@@ -8,6 +8,14 @@
 }
 
 body {
+    background-image: url('images.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+body {
   background: linear-gradient(135deg, #001f2b, #003f52);
   color: white;
   display: flex;
