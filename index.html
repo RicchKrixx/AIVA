@@ -3,152 +3,32 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BizMAX Admin Panel</title>
-  <style>
-    /* Reset & Base Styles */ * { margin: 0; padding: 0; box-sizing: border-box; } html, body { height: 100%; width: 100%; font-family: arial, sans-serif; overflow-x: hidden; background-color: lightblue; background-size: cover; } .container { max-width: 100%; margin: auto; padding:16px; border-radius:16px; border: solid 5px rgb(255, 255, 255, 0.1); backdrop-filter: blur(25px); box-shadow: 0px 0px 30px 20px rgb(0,0,0,0.1); color: white; display: flex; flex-direction: column; text-align: center; align-items: center; } header { background: linear-gradient(270deg, #ff6ec4, #7873f5, #42a5f5); background-size: 600% 600%; animation: gradientAnimation 10s ease infinite; width:100%; border-radius:16px; border: solid 5px rgb(255, 255, 255, 0.1); backdrop-filter: blur(25px); box-shadow: 0px 0px 30px 20px rgb(0,0,0,0.1); color: white; display: flex; flex-direction: column; align-items: center; text-align: center; opacity: 0.9; padding: 20px; gap: 15px; } @keyframes gradientAnimation { 0% {background-position: 0% 50%;} 50% {background-position: 100% 50%;} 100% {background-position: 0% 50%;} } /* Rest of your existing CSS remains unchanged */ 
-    
-    body {
-      font-family: Arial, sans-serif;
-      background-color: lightblue;
-      margin: 0;
-      padding: 0;
-    }
-    .admin-container {
-      max-width: 800px;
-      margin: 30px auto;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      backdrop-filter: blur(20px);
-      padding: 20px;
-      box-shadow: 0px 0px 30px 10px rgba(0, 0, 0, 0.1);
-    }
-    h1, h2 {
-      text-align: center;
-      color: white;
-    }
-    .form-group {
-      margin-bottom: 15px;
-    }
-    label, input, textarea {
-      display: block;
-      width: 100%;
-      font-size: 16px;
-    }
-    input, textarea {
-      padding: 8px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: none;
-    }
-    button {
-      background-color: #1976d2;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      font-size: 16px;
-      border-radius: 10px;
-      cursor: pointer;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 30px;
-      background-color: white;
-      border-radius: 16px;
-      overflow: hidden;
-    }
-    th, td {
-      padding: 10px;
-      border-bottom: 1px solid #ccc;
-      text-align: center;
-    }
-    .btn-group button {
-      margin: 0 5px;
-    }
-  </style>
+  <title>LearnAI – Creative Study Partner</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="admin-container">
-    <h1>BizMAX Admin Dashboard</h1>
+  <header>
+    <h1>LearnAI</h1>
+    <p>Your AI-Powered Creative Learning Companion</p>
+  </header>
 
-    <h2>Add New Product</h2>
-    <div class="form-group">
-      <label for="name">Product Name</label>
-      <input type="text" id="name" placeholder="e.g. Banana" />
+  <main>
+    <div class="chat-box">
+      <div id="chatOutput" class="chat-output">
+        <div class="ai-message">👋 Hey there! What topic do you want to learn today?</div>
+      </div>
+
+      <div class="input-area">
+        <input type="text" id="userInput" placeholder="Type a topic... e.g. Photosynthesis" />
+        <button id="sendBtn">Ask</button>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="price">Price ($)</label>
-      <input type="number" id="price" placeholder="e.g. 10" />
-    </div>
-    <div class="form-group">
-      <label for="image">Image URL</label>
-      <input type="text" id="image" placeholder="https://example.com/image.jpg" />
-    </div>
-    <button onclick="addProduct()">Add Product</button>
+  </main>
 
-    <h2>Product List</h2>
-    <table id="productTable">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Items will appear here -->
-      </tbody>
-    </table>
-  </div>
+  <footer>
+    <p>Made with 💙 by YngDrll</p>
+  </footer>
 
-  <script>
-    function addProduct() {
-      const name = document.getElementById('name').value;
-      const price = document.getElementById('price').value;
-      const image = document.getElementById('image').value;
-
-      if (!name  !price  !image) {
-        alert("Please fill in all fields");
-        return;
-      }
-
-      const table = document.getElementById("productTable").getElementsByTagName('tbody')[0];
-      const row = table.insertRow();
-
-      row.innerHTML = 
-        <td><img src="${image}" alt="${name}" width="60" height="60" style="border-radius:10px;"></td>
-        <td>${name}</td>
-        <td>$${price}</td>
-        <td class="btn-group">
-          <button onclick="editRow(this)">Edit</button>
-          <button onclick="deleteRow(this)">Delete</button>
-        </td>
-      ;
-
-      document.getElementById('name').value = '';
-      document.getElementById('price').value = '';
-      document.getElementById('image').value = '';
-    }
-
-    function deleteRow(btn) {
-      const row = btn.parentElement.parentElement;
-      row.remove();
-    }
-
-    function editRow(btn) {
-      const row = btn.parentElement.parentElement;
-      const nameCell = row.cells[1];
-      const priceCell = row.cells[2];
-
-      const newName = prompt("Edit product name:", nameCell.textContent);
-      const newPrice = prompt("Edit price:", priceCell.textContent.replace('$', ''));
-
-      if (newName && newPrice) {
-        nameCell.textContent = newName;
-        priceCell.textContent = "$" + newPrice;
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
