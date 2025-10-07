@@ -10,79 +10,84 @@ body {
   color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
   height: 100vh;
-  overflow: hidden;
+  text-align: center;
 }
 
+/* Header stays pinned at top */
 header {
-  padding: 15px 20px;
+  width: 100%;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
   background: rgba(0, 0, 0, 0.3);
   border-bottom: 1px solid rgba(0, 255, 255, 0.3);
   text-align: center;
+  z-index: 10;
 }
 
 h1 {
   color: cyan;
-  font-size: 1.8rem;
+  font-size: 2rem;
 }
 
-header p {
+p {
   opacity: 0.8;
-  font-size: 0.9rem;
+}
+
+/* Main section sits in the center */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 120px; /* gives space below header */
+  margin-bottom: 60px; /* gives space above footer */
 }
 
 .chat-box {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
   padding: 20px;
-  overflow-y: auto;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.2);
 }
 
 .chat-output {
-  flex: 1;
+  text-align: left;
+  max-height: 400px;
   overflow-y: auto;
-  padding-right: 5px;
+  padding: 10px;
 }
 
-.ai-message, .user-message {
-  background: rgba(255, 255, 255, 0.1);
+.ai-message,
+.user-message {
+  background: rgba(0, 255, 255, 0.15);
   margin: 8px 0;
-  padding: 12px 16px;
+  padding: 10px 15px;
   border-radius: 10px;
   line-height: 1.4;
-  max-width: 80%;
-  word-wrap: break-word;
-}
-
-.ai-message {
-  background: rgba(0, 255, 255, 0.15);
-  align-self: flex-start;
 }
 
 .user-message {
   background: rgba(255, 255, 255, 0.15);
-  align-self: flex-end;
   text-align: right;
 }
 
 .input-area {
   display: flex;
-  gap: 10px;
-  padding: 15px 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border-top: 1px solid rgba(0, 255, 255, 0.3);
-  position: sticky;
-  bottom: 0;
+  margin-top: 10px;
+  gap: 8px;
 }
 
 input {
   flex: 1;
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -94,7 +99,7 @@ button {
   border: none;
   color: #003f52;
   font-weight: 600;
-  padding: 12px 20px;
+  padding: 10px 18px;
   border-radius: 10px;
   cursor: pointer;
   transition: 0.2s;
@@ -104,11 +109,16 @@ button:hover {
   background: #00eaff;
 }
 
+/* Footer pinned bottom */
 footer {
-  padding: 8px;
-  font-size: 0.8rem;
-  text-align: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  padding: 10px;
   background: rgba(0, 0, 0, 0.3);
   border-top: 1px solid rgba(0, 255, 255, 0.3);
+  font-size: 0.9rem;
   opacity: 0.7;
+  text-align: center;
 }
